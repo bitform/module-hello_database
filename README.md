@@ -1,6 +1,7 @@
-## module-hello_database
+## Hello Database module
 
-The Hello Database module contains a simple example of how to create a separate database table for your module and insert and extract data from it.
+The Hello Database module contains a simple example of how to create a separate database table for your module and 
+insert and extract data from it.
 
 ### Documentation
 

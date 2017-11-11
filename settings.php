@@ -1,21 +1,24 @@
 <?php
 
 require_once("../../global/library.php");
-ft_init_module_page();
 
-if (isset($_POST["update"]))
-{
-  $setting = isset($_POST["demo_setting"]) ? $_POST["demo_setting"] : "";
-  $info = array("demo_setting" => $setting);
+use FormTools\Modules;
 
-  ft_set_module_settings($info);
+$module = Modules::initModulePage("admin");
+$L = $module->getLangStrings();
 
-  $g_success = true;
-  $g_message = $L["notify_setting_updated"];
+if (isset($_POST["update"])) {
+    $setting = isset($_POST["demo_setting"]) ? $_POST["demo_setting"] : "";
+    $info = array("demo_setting" => $setting);
+
+    $module->setSettings($info);
+
+    $g_success = true;
+    $g_message = $L["notify_setting_updated"];
 }
 
-// ------------------------------------------------------------------------------------------------
+$page_vars = array(
+    "demo_setting" => $module->getSettings("demo_setting")
+);
 
-$page_vars = array();
-$page_vars["demo_setting"] = ft_get_module_settings("demo_setting");
-ft_display_module_page("templates/settings.tpl", $page_vars);
+$module->displayPage("templates/settings.tpl", $page_vars);

@@ -1,13 +1,14 @@
 <?php
 
 require_once("../../global/library.php");
-ft_init_module_page();
 
-$random_numbers = hd_get_rand_nums();
+use FormTools\Modules;
+$module = Modules::initModulePage("admin");
 
-// ------------------------------------------------------------------------------------------------
+$random_numbers = $module->getRandNums();
 
-$page_vars = array();
-$page_vars["random_numbers"] = implode(", ", $random_numbers);
+$page_vars = array(
+    "random_numbers" => implode(", ", $random_numbers)
+);
 
-ft_display_module_page("templates/index.tpl", $page_vars);
+$module->displayPage("templates/index.tpl", $page_vars);
